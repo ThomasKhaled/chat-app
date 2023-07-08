@@ -1,38 +1,108 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body,
+html {
+  margin: 0;
+  padding: 0;
+  background-color: #002e48;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.parent {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.room-label {
+  font-weight: bold;
+  font-size: 1.3rem;
+  word-spacing: 3px;
+}
+
+.container {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: #cedde6;
+  border-radius: 16px;
+  width: 90vw;
+  /* Responsive width */
+  max-width: 500px;
+  /* Maximum width */
+  height: auto;
+  min-height: 350px;
+  /* Responsive height */
+  padding: 2rem;
+  /* Add padding for better spacing */
+}
+
+.room input,
+.room button,
+.sign-out button {
+  width: 100%;
+  /* Full-width for input and buttons */
+  height: 40px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 1rem;
+  /* Add vertical margin for spacing */
+}
+
+.room input {
+  padding-left: 1rem;
+  color: #002e48;
+}
+
+.room button,
+.sign-out button {
+  cursor: pointer;
+  transition: .5s;
+}
+
+.room button:hover,
+.sign-out button:hover {
+  transform: scale(1.1);
+}
+
+.room {
+  margin-top: 1.5rem;
+}
+
+@media screen and (min-width: 500px) {
+
+  /* Apply additional styles for larger screens */
+  .container {
+    padding: 3rem;
+  }
+
+  .room input,
+  .room button,
+  .sign-out button {
+    max-width: 400px;
+    /* Limit maximum width on larger screens */
+  }
+}
+
+.avail-rooms {
+  font-size: 1.3rem;
+  padding: .2rem;
+  background-color: #002e48;
   color: white;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: .5rem;
+  cursor: pointer;
+  border-radius: .5rem;
+  transition: .5s;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.avail-rooms:hover {
+  transform: scale(1.2);
 }

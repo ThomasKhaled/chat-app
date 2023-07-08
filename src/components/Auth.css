@@ -1,0 +1,99 @@
+* {
+    box-sizing: border-box;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    background-color: #002e48;
+}
+
+.auth {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #adc4d3;
+    border-radius: 16px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    width: clamp(30rem, 500px, 50rem);
+    height: clamp(10rem, 400px, 30rem);
+}
+
+.sign-in {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 32px;
+    background-color: white;
+    width: 500px;
+    height: 50px;
+    border: 2px solid gray;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.google-logo {
+    width: 32px;
+    height: auto;
+}
+
+.signin-button {
+    border: none;
+    background: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.chat-img img {
+    width: clamp(30rem, 500px, 50rem);
+    height: clamp(10rem, 400px, 30rem);
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+}
+
+.parent-container {
+    display: flex;
+}
+
+@media (max-width: 1050px) {
+    .auth-container {
+        width: clamp(10rem, 90vw, 40rem);
+        height: clamp(3rem, 300px, 20rem);
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+    }
+
+    .sign-in {
+        width: 90vw;
+    }
+
+    .signin-button {
+        font-size: clamp(.2rem, 1rem, 1.5rem);
+        ;
+    }
+
+    .chat-img img {
+        width: clamp(10rem, 90vw, 40rem);
+        height: clamp(3rem, 300px, 20rem);
+        border-top-left-radius: 16px;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 16px;
+    }
+
+    .parent-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
