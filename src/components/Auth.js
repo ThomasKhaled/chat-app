@@ -25,10 +25,10 @@ const Auth = (props) => {
         <div className='auth'>
             <div className="parent-container">
                 <div className='chat-img'>
-                    <img src={ chatImg2 } alt="" />
+                    <img src={chatImg2} alt="" />
                 </div>
                 <div className="auth-container">
-                    <div className='sign-in' onClick={ signInWithGoogle }>
+                    <div className='sign-in' onClick={signInWithGoogle}>
                         <GoogleSvg className='google-logo' />
                         <button className='signin-button'> Login with Google </button>
                     </div>

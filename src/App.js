@@ -5,7 +5,6 @@ import Chat from "./components/Chat";
 import { signOut } from "firebase/auth";
 import { auth, docs } from "./firebase-config";
 import './App.css';
-import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 const cookies = new Cookies();
 
@@ -16,31 +15,18 @@ function App() {
 
   const roomName = useRef();
 
-  useEffect(() => {
+  const getRooms = async () => {
     const rooms = [];
     const uniqueRooms = new Set();
-
-    const getRooms = async () => {
-      await docs.then((qs) => {
-        qs.forEach((doc) => {
-          const room = doc.data().room;
-          rooms.push(room);
-          uniqueRooms.add(room);
-        });
-
-        setRooms([...uniqueRooms]);
+    await docs.then((qs) => {
+      qs.forEach((doc) => {
+        const room = doc.data().room;
+        rooms.push(room);
+        uniqueRooms.add(room);
       });
-    }
-    getRooms();
 
-  }, []);
-
-  if (!isAuth) {
-    return (
-      <div className="App">
-        <Auth setIsAuth={ setIsAuth } />
-      </div>
-    );
+      setRooms([...uniqueRooms]);
+    });
   }
 
   const enterChatHandler = () => {
@@ -58,31 +44,41 @@ function App() {
     setRoom(event.target.textContent);
   };
 
+  useEffect(() => {
+    getRooms();
+  }, []);
 
   return (
     <>
-      { room ? (
-        <Chat roomName={ room } />
+      {isAuth ?
+        (
+          room ? (
+            <Chat roomName={room} />
 
-      ) : (
-        <div className="parent">
-          <div className="container">
-            { rooms.length > 0 && <h1>Available Rooms</h1> }
-            { rooms.map((room, id) => (
-              <p className="avail-rooms" onClick={ availRoomsHandler } key={ id }>{ room }</p>
-            )) }
-            <div className="room">
-              <label className="room-label" htmlFor="roomName">Join (Create) Room: </label>
-              <input id="roomName" type="text" ref={ roomName } />
-              <button onClick={ enterChatHandler }>Enter Chat</button>
-            </div>
-            <div className="sign-out">
-              <button onClick={ signOutHandler }> Sign Out </button>
-            </div>
-          </div>
+          ) : (
+            <div className="parent">
+              <div className="container">
+                {rooms.length > 0 && <h1>Available Rooms</h1>
+                }
+                {rooms.map((room, id) => (
+                  <p className="avail-rooms" onClick={availRoomsHandler} key={id}>{room}</p>
+                ))}
+                <div className="room">
+                  <label className="room-label" htmlFor="roomName">Join (Create) Room: </label>
+                  <input id="roomName" type="text" ref={roomName} />
+                  <button onClick={enterChatHandler}>Enter Chat</button>
+                </div>
+                <div className="sign-out">
+                  <button onClick={signOutHandler}> Sign Out </button>
+                </div>
+              </div >
+            </div >
+          )
+        ) :
+        <div className="App">
+          <Auth setIsAuth={setIsAuth} />
         </div>
-      ) }
-
+      }
 
     </>
   );
